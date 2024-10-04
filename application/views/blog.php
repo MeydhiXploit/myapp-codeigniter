@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Artikel Terbaru</h1>
-    <?php foreach($blogs as $blog):?>
-        <div class="blog">
-            <h2><?php echo $blog['title']; ?></h2>
-            <?php echo $blog['content']; ?>
+    <?php foreach ($blog as $blogs) : ?>
+        <div>
+            <h2>
+                <a href="<?php echo site_url('blog/detail/'.$blogs['url']) ?>"><?php echo $blogs['title']; ?></a>
+            </h2>
+            <?php echo $blogs['content']; ?>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach ?>
 </body>
 </html>
