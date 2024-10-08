@@ -29,13 +29,16 @@
                 // dan akan di parsing di method insertBlog dengan cara membuat
                 // sebuah paramater data di dalam method tersebut 
                 $id = $this->Blog_model->insertBlog($data);
-                if($id)
+                if($id){
                     echo "data berhasil di simpan";
-                else
+                    redirect('/');
+                }else{
                     echo "data gagal di simpan";
+                }
             }
 
             $this->load->view('form_add');
+             
         }
         public function edit($id){
             $query = $this->Blog_model->getSingleBlog('id',$id);
@@ -49,10 +52,14 @@
                 // sebuah paramater post di dalam method tersebut 
                 $id = $this->Blog_model->updateBlog($id,$post);
                 if($id)
-                    echo "data berhasil di simpan";
+                    echo "berhasil di simpan";
                 else
                     echo "data gagal di simpan";
             }
             $this->load->view('form_edit',$data);
+        }
+        public function delete($id){
+            $this->Blog_model->deleteBlog($id);
+            redirect('/');
         }
     }

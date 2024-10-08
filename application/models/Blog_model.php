@@ -1,6 +1,8 @@
 <?php
     class Blog_model extends CI_Model{
         public function getBlogs(){
+          $filter = $this->input->get('find');
+          $this->db->like('title',$filter);
           return $this->db->get('blog');
         }
         public function getSingleBlog($field,$value){
@@ -15,5 +17,10 @@
             $this->db->where('id',$id);
             $this->db->update('blog',$post);
             return $this->db->affected_rows();   
+        }
+        public function deleteBlog($id){
+            $this->db->where('id',$id);
+            $this->db->delete('blog');
+            return $this->db->affected_rows();
         }
     }
