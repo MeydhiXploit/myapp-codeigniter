@@ -51,10 +51,12 @@
                 // dan akan di parsing di method insertBlog dengan cara membuat
                 // sebuah paramater post di dalam method tersebut 
                 $id = $this->Blog_model->updateBlog($id,$post);
-                if($id)
+                if($id){
                     echo "berhasil di simpan";
-                else
+                    redirect('/');
+                }else{
                     echo "data gagal di simpan";
+                }
             }
             $this->load->view('form_edit',$data);
         }
