@@ -73,5 +73,3 @@ contributors to the CodeIgniter project and you, the CodeIgniter user.
 Preview
 ***************
 
-![Screenshot 2024-10-09 231241](https://github.com/user-attachments/assets/9f2273ff-e270-47c0-ab52-07452321ddfd)
-
