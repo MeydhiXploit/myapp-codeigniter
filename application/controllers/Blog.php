@@ -4,6 +4,7 @@
             parent::__construct();
             $this->load->database();
             $this->load->helper('url');
+            $this->load->helper('form');
             $this->load->model('Blog_model');
         }
         
@@ -28,6 +29,23 @@
                 // jadi ini blog model ke insert blog dengan membawa data
                 // dan akan di parsing di method insertBlog dengan cara membuat
                 // sebuah paramater data di dalam method tersebut 
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 100;
+                $config['max_width'] = 1024;
+                $config['max_height'] = 768;
+                
+                $this->load->library('upload',$config);
+                if ( ! $this->upload->do_upload('cover'))
+                {
+                    echo $this->upload->display_errors();
+                }   
+                else
+                {
+                    $data['cover'] = $this->upload->data()['file_name'];
+                }
+
+
                 $id = $this->Blog_model->insertBlog($data);
                 if($id){
                     echo "data berhasil di simpan";
