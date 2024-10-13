@@ -1,7 +1,11 @@
 <?php $this->load->view('partials/header.php'); ?>
 <!-- Page Header-->
- <?php
-    $covert = base_url() .'uploads/'.$blog['cover'];
+<?php
+    if(empty($blog['cover'])){
+        $covert = base_url() .'assets/assets/img/post-bg.jpg';
+    }else{
+        $covert = base_url() .'uploads/'.$blog['cover'];
+    }
  ?>
 <header class="masthead" style="background-image: url('<?php echo $covert; ?>')">
             <div class="container position-relative px-4 px-lg-5">
