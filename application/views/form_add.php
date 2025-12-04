@@ -15,24 +15,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
                 <h1>Tambah artikel</h1>
                 <?php echo form_open_multipart(); ?>
                     <div class="form-group">
                         <label for="name">Judul</label>
-                        <?php echo form_input('title',null,'class="form-control"'); ?>
+                        <!--  fungsi set_value('') agar si user tidak mengetikkan kembali -->
+                        <?php echo form_input('title',set_value('title'),'class="form-control"'); ?>
+                        <?= form_error('title','<small class="text-danger pl-3">','</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="content">content</label>
-                        <?php echo form_textarea('content',null,'class="form-control"'); ?>
+                        <?php echo form_textarea('content',set_value('content'),'class="form-control"'); ?>
+                        <?= form_error('content','<small class="text-danger pl-3">','</small>'); ?>
                     </div>
                     <div class="form-group">
                         <label for="cover">cover</label>
-                        <?php echo form_upload('cover',null,'class="form-control"'); ?>
+                        <?php echo form_upload('cover',set_value('cover'),'class="form-control"'); ?>
                     </div>
                     <div class="form-group">
                         <label for="url">URL</label>
-                        <?php echo form_input('url',null,'class="form-control"'); ?>
+                        <?php echo form_input('url',set_value('url'),'class="form-control"'); ?>
+                        <?= form_error('url','<small class="text-danger pl-3">','</small>'); ?>
                     </div>
                     <div class="form-group mt-2 mb-2">
                         <button class="btn btn-primary" type="submit">SIMPAN ARTIKEL</button>

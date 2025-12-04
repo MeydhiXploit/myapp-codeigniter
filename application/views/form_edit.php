@@ -14,24 +14,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">      
             <h1>Edit Artikel</h1>
-            <form method="POST" class="form-grup">
+            <?php echo form_open_multipart(); ?>
+            <div class="form-group">
                 <div>
+                    <form method="post"></form>
                     <label for="name">Judul</label>
-                    <input class="form-control" type="text" name="title" value="<?php echo $blog['title']; ?>">
-                </div>
+                    <?php echo form_input('title',$blog['title'],'class="form-control"'); ?>
+                 </div>
                 <div>
                     <label for="content">content</label>
-                    <textarea class="form-control" name="content" id="" cols="30" rows="10">
-                        <?php echo $blog['content']; ?>
-                    </textarea>
+                    <?php echo form_textarea('content',$blog['content'],'class="form-control"'); ?>
                 </div>
                 <div>
                     <label for="url">URL</label>
-                    <input type="text" class="form-control" name="url" value="<?php echo $blog['url']; ?>">
+                    <?php echo form_input('url',$blog['url'],'class="form-control"'); ?>
+                </div>
+                <div>
+                    <label for="cover">Cover</label>
+                    <?php echo form_upload('cover',$blog['cover'],'class="form-control"'); ?>
                 </div>
                 <div class="mt-2 mb-2">
                     <button class="btn btn-primary" type="submit">EDIT ARTIKEL</button>
                 </div>
+            </div>
             </form>
         </div>
     </div>

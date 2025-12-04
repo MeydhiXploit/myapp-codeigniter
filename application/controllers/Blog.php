@@ -21,8 +21,12 @@
         }
 
         public function add(){
-            // apakah jika ada input post maka muncul ini
-            if($this->input->post()){
+            $this->form_validation->set_rules('title','Judul','required');
+            $this->form_validation->set_rules('url','URL','required|alpha_dash');
+            $this->form_validation->set_rules('content','Konten','required');
+
+            //BILA TRUE KITA SIMPAN
+            if($this->form_validation->run() === TRUE){
                 $data['title'] = $this->input->post('title');
                 $data['content'] = $this->input->post('content');
                 $data['url'] = $this->input->post('url');
@@ -60,11 +64,27 @@
         }
         public function edit($id){
             $query = $this->Blog_model->getSingleBlog('id',$id);
-            $data['blog'] = $query->row_array();
+            $data['blog'] = $query->row_array();    
+            // apakah jika ada input post maka muncul ini
             if($this->input->post()){
                 $post['title'] = $this->input->post('title');
                 $post['content'] = $this->input->post('content');
                 $post['url'] = $this->input->post('url');
+               
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'gif|jpeg|png|jpg';
+                $config['max_size'] = 1000;
+                $config['max_width'] = 2000;
+                $config['max_height'] = 1600;
+               
+                $this->load->library('upload',$config);
+                $this->upload->do_upload('cover');
+                //jika bila tidak kosong variabel file_name ini
+                if (!empty($this->upload->data()['file_name']))
+                {
+                    // maka kita tambahkan data file name ini kedalam post cover
+                    $post['cover'] = $this->upload->data()['file_name'];
+                }
                 // jadi ini blog model ke insert blog dengan membawa post
                 // dan akan di parsing di method insertBlog dengan cara membuat
                 // sebuah paramater post di dalam method tersebut 
